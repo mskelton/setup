@@ -9,4 +9,4 @@ node_modules
 /.cache
 /build
 /public/build
-/wasm/target
+/solver/target

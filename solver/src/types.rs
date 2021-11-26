@@ -1,3 +1,5 @@
+use wasm_bindgen::prelude::*;
+
 #[derive(Debug, PartialEq)]
 pub struct Card {
     pub shape: i32,
@@ -6,6 +8,7 @@ pub struct Card {
     pub shade: i32,
 }
 
+#[wasm_bindgen]
 #[derive(Debug, PartialEq)]
 pub struct Set(pub usize, pub usize, pub usize);
 
