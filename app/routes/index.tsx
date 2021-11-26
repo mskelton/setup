@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 import type { LinksFunction, LoaderFunction, MetaFunction } from "remix"
 import { useLoaderData } from "remix"
+import * as wasm from "../../wasm/pkg/setup_bg"
 import stylesUrl from "../styles/index.css"
 
 export const meta: MetaFunction = () => {
