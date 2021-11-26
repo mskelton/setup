@@ -4,6 +4,11 @@ use crate::{
     types::{Card, Set},
 };
 
+/// Solves a board to find the first valid set.
+///
+/// If a set is found, the function will return an `Ok` result with the card
+/// positions of the set. If a set is not found or the board is too small, an
+/// `Err` result will be returned.
 pub fn solve(board: &[Card]) -> Result<Set, &'static str> {
     if board.len() < 3 {
         return Err("board is too small");
