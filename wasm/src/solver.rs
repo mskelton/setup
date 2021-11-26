@@ -1,7 +1,7 @@
 use crate::{
     compare::is_set,
     iter::next_set,
-    types::{Card, Set},
+    types::{Board, Set},
 };
 
 /// Solves a board to find the first valid set.
@@ -9,7 +9,7 @@ use crate::{
 /// If a set is found, the function will return an `Ok` result with the card
 /// positions of the set. If a set is not found or the board is too small, an
 /// `Err` result will be returned.
-pub fn solve(board: &[Card]) -> Result<Set, &'static str> {
+pub fn solve(board: &Board) -> Result<Set, &'static str> {
     if board.len() < 3 {
         return Err("board is too small");
     }
@@ -36,13 +36,13 @@ mod tests {
 
     #[test]
     fn test_small_board() {
-        let board = [make_card(0, 0, 0, 0), make_card(0, 0, 0, 0)];
+        let board = vec![make_card(0, 0, 0, 0), make_card(0, 0, 0, 0)];
         assert_eq!(solve(&board), Err("board is too small"));
     }
 
     #[test]
     fn test_no_solution() {
-        let board = [
+        let board = vec![
             make_card(0, 0, 0, 0),
             make_card(0, 0, 0, 0),
             make_card(1, 0, 0, 0),
@@ -53,7 +53,7 @@ mod tests {
 
     #[test]
     fn test_valid_solve() {
-        let board = [
+        let board = vec![
             make_card(0, 0, 0, 0),
             make_card(1, 0, 2, 1),
             make_card(2, 0, 2, 1),

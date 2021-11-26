@@ -1,10 +1,10 @@
-use crate::types::{Card, Set};
+use crate::types::{Board, Set};
 
 /// Tests if a group of traits are valid
 ///
 /// A group of traits (e.g. shape, color) are valid when either all of them
 /// are equal, or they are all different.
-fn is_valid_trait_group(v1: i8, v2: i8, v3: i8) -> bool {
+fn is_valid_trait_group(v1: i32, v2: i32, v3: i32) -> bool {
     let all_eq = v1 == v2 && v2 == v3;
     let all_diff = v1 != v2 && v1 != v3 && v2 != v3;
 
@@ -16,7 +16,7 @@ fn is_valid_trait_group(v1: i8, v2: i8, v3: i8) -> bool {
 /// A set is valid when each trait group (e.g. shape, color) are all equal or
 /// all different. Cards are found on the board using the position from the
 /// provided set.
-pub fn is_set(board: &[Card], set: &Set) -> bool {
+pub fn is_set(board: &Board, set: &Set) -> bool {
     let card1 = &board[set.0];
     let card2 = &board[set.1];
     let card3 = &board[set.2];
@@ -34,7 +34,7 @@ mod tests {
 
     #[test]
     fn test_all_eq() {
-        let board = [
+        let board = vec![
             make_card(0, 0, 0, 0),
             make_card(0, 0, 0, 0),
             make_card(0, 0, 0, 0),
@@ -46,7 +46,7 @@ mod tests {
 
     #[test]
     fn test_mix() {
-        let board = [
+        let board = vec![
             make_card(0, 0, 2, 1),
             make_card(0, 1, 0, 2),
             make_card(0, 2, 1, 0),
@@ -58,7 +58,7 @@ mod tests {
 
     #[test]
     fn test_invalid_set() {
-        let board = [
+        let board = vec![
             make_card(0, 0, 0, 0),
             make_card(0, 0, 0, 0),
             make_card(1, 0, 0, 0),
@@ -70,7 +70,7 @@ mod tests {
 
     #[test]
     fn test_multiple_errors() {
-        let board = [
+        let board = vec![
             make_card(0, 0, 1, 2),
             make_card(0, 1, 0, 1),
             make_card(1, 2, 2, 1),
