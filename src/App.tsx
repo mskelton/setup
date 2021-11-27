@@ -1,4 +1,4 @@
-import { attempt_solve } from "./utils/solver"
+import { attemptSolve } from "./utils/solver"
 import { Card } from "./utils/types"
 
 function quick_card(
@@ -11,12 +11,12 @@ function quick_card(
 }
 export function App() {
   function handleSolve() {
-    const set = attempt_solve([
-      quick_card(0, 0, 0, 0),
+    const set = attemptSolve([
+      quick_card(0, 0, 1, 2),
       quick_card(0, 1, 2, 0),
       quick_card(0, 0, 0, 0),
       quick_card(0, 1, 0, 0),
-      quick_card(0, 0, 0, 1),
+      quick_card(0, 2, 0, 1),
     ])
 
     console.log(set)

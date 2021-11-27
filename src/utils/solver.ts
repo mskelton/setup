@@ -1,7 +1,7 @@
 import { solve } from "solver"
 import { Board, Card, EncodedCard } from "./types"
 
-function encode_card(card: Card): EncodedCard {
+function encodeCard(card: Card): EncodedCard {
   let encodedCard = 0
 
   for (const trait of [card.shape, card.number, card.color, card.shade]) {
@@ -12,8 +12,8 @@ function encode_card(card: Card): EncodedCard {
   return encodedCard
 }
 
-export function attempt_solve(board: Board) {
-  const encodedBoard = board.map(encode_card)
+export function attemptSolve(board: Board) {
+  const encodedBoard = board.map(encodeCard)
 
   try {
     const result = solve(encodedBoard as unknown as Int32Array)
