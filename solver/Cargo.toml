@@ -1,5 +1,8 @@
 [package]
 name = "solver"
+description = "Set game solver"
+repository = "https://github.com/mskelton/setup"
+license = "ISC"
 version = "0.1.0"
 authors = ["Mark Skelton"]
 edition = "2018"

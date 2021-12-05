@@ -3,6 +3,8 @@
   "compilerOptions": {
     "emitDeclarationOnly": false,
     "jsx": "react-jsx",
+    "jsxImportSource": "@emotion/react",
+    "module": "esnext",
     "noEmit": true
   }
 }

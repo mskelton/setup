@@ -1,30 +1,33 @@
-import { attemptSolve } from "./utils/solver"
-import { Card } from "./utils/types"
+import { css } from "@emotion/react"
+import { useRef } from "react"
+import { Canvas } from "./components/Canvas"
+import { GlobalStyles } from "./components/GlobalStyles"
+import { ModelProvider } from "./components/ModelProvider"
+import { Solver } from "./components/Solver"
+import { Video } from "./components/Video"
 
-function quick_card(
-  shape: number,
-  number: number,
-  color: number,
-  shade: number
-): Card {
-  return { color, number, shade, shape }
-}
+const wrapperStyle = css`
+  width: 80vw;
+  height: 80vh;
+  position: relative;
+`
+
 export function App() {
-  function handleSolve() {
-    const set = attemptSolve([
-      quick_card(0, 0, 1, 2),
-      quick_card(0, 1, 2, 0),
-      quick_card(0, 0, 0, 0),
-      quick_card(0, 1, 0, 0),
-      quick_card(0, 2, 0, 1),
-    ])
-
-    console.log(set)
-  }
+  const videoRef = useRef<HTMLVideoElement>(null!)
+  const canvasRef = useRef<HTMLCanvasElement>(null!)
 
   return (
-    <main>
-      <button onClick={handleSolve}>Solve</button>
-    </main>
+    <ModelProvider>
+      <GlobalStyles />
+
+      <main>
+        <div css={wrapperStyle}>
+          <Video ref={videoRef} />
+          <Canvas ref={canvasRef} />
+        </div>
+
+        <Solver canvasRef={canvasRef} videoRef={videoRef} />
+      </main>
+    </ModelProvider>
   )
 }

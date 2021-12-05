@@ -11,11 +11,15 @@
     "ts": "tsc"
   },
   "dependencies": {
+    "@emotion/react": "^11.7.0",
+    "@tensorflow-models/coco-ssd": "^2.2.2",
+    "@tensorflow-models/mobilenet": "^2.1.0",
     "@tensorflow/tfjs": "^3.11.0",
     "core-js": "^3.19.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "solver": "link:./solver/pkg"
+    "solver": "link:./solver/pkg",
+    "use-async-effect": "^2.2.3"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",
@@ -24,11 +28,13 @@
     "@babel/preset-env": "^7.16.4",
     "@babel/preset-react": "^7.16.0",
     "@babel/preset-typescript": "^7.16.0",
+    "@emotion/babel-plugin": "^11.3.0",
     "@mskelton/browserslist-config": "^1.0.0",
     "@mskelton/eslint-config": "^6.1.0",
     "@mskelton/tsconfig": "^1.0.2",
     "@types/react": "^17.0.37",
     "@types/react-dom": "^17.0.11",
+    "@types/webpack-env": "^1.16.3",
     "@typescript-eslint/eslint-plugin": "^4.30.0",
     "@typescript-eslint/parser": "^4.30.0",
     "@wasm-tool/wasm-pack-plugin": "^1.6.0",

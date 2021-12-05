@@ -10,6 +10,7 @@ const publicPath = "/setup"
 // just uses the chunk name.
 const filename = prod ? "[name].[contenthash]" : "[name]"
 
+/** @type {import('webpack').Configuration} */
 module.exports = {
   cache: {
     buildDependencies: {
@@ -28,6 +29,7 @@ module.exports = {
   experiments: {
     asyncWebAssembly: true,
   },
+  ignoreWarnings: [/Failed to parse source map/],
   mode,
   module: {
     rules: [
@@ -43,7 +45,10 @@ module.exports = {
           loader: "babel-loader",
           options: {
             cacheDirectory: !prod,
-            plugins: ["@babel/plugin-transform-runtime"],
+            plugins: [
+              "@babel/plugin-transform-runtime",
+              "@emotion/babel-plugin",
+            ],
             presets: [
               [
                 "@babel/preset-env",
@@ -63,6 +68,7 @@ module.exports = {
                 "@babel/preset-react",
                 {
                   development: !prod,
+                  importSource: "@emotion/react",
                   runtime: "automatic",
                 },
               ],
