@@ -6,5 +6,11 @@
     "jsxImportSource": "@emotion/react",
     "module": "esnext",
     "noEmit": true
+  },
+  "ts-node": {
+    "transpileOnly": true,
+    "compilerOptions": {
+      "module": "CommonJS"
+    }
   }
 }
