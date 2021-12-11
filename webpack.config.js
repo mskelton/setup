@@ -1,10 +1,15 @@
 const path = require("path")
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
+const { ESBuildMinifyPlugin } = require("esbuild-loader")
 // const WasmPackPlugin = require("@wasm-tool/wasm-pack-plugin")
 
 const mode = process.env.NODE_ENV || "development"
 const prod = mode === "production"
 const publicPath = "/setup"
+
+// ESBuild target
+const target = "chrome96"
 
 // The filename in production includes the content hash, while development
 // just uses the chunk name.
@@ -25,58 +30,27 @@ module.exports = {
     },
   },
   devtool: prod ? false : "source-map",
-  entry: "./src/index.tsx",
+  entry: "./src/main.ts",
   experiments: {
     asyncWebAssembly: true,
+    topLevelAwait: true,
   },
-  ignoreWarnings: [/Failed to parse source map/],
   mode,
   module: {
     rules: [
       {
-        enforce: "pre",
-        loader: "source-map-loader",
-        test: /\.js$/,
+        loader: "esbuild-loader",
+        options: { loader: "ts", target },
+        test: /\.ts$/,
       },
       {
-        exclude: /node_modules/,
-        test: /\.[jt]sx?$/,
-        use: {
-          loader: "babel-loader",
-          options: {
-            cacheDirectory: !prod,
-            plugins: [
-              "@babel/plugin-transform-runtime",
-              "@emotion/babel-plugin",
-            ],
-            presets: [
-              [
-                "@babel/preset-env",
-                {
-                  corejs: "3.19",
-                  useBuiltIns: "entry",
-                },
-              ],
-              [
-                "@babel/preset-typescript",
-                {
-                  allExtensions: true,
-                  isTSX: true,
-                },
-              ],
-              [
-                "@babel/preset-react",
-                {
-                  development: !prod,
-                  importSource: "@emotion/react",
-                  runtime: "automatic",
-                },
-              ],
-            ],
-          },
-        },
+        test: /\.css$/,
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
     ],
+  },
+  optimization: {
+    minimizer: [new ESBuildMinifyPlugin({ target })],
   },
   output: {
     clean: true,
@@ -85,6 +59,7 @@ module.exports = {
     publicPath,
   },
   plugins: [
+    new MiniCssExtractPlugin({ filename: `${filename}.css` }),
     new HtmlWebpackPlugin({ template: "src/index.html" }),
     // new WasmPackPlugin({
     //   crateDirectory: path.resolve(__dirname, "solver"),
@@ -92,6 +67,6 @@ module.exports = {
     // }),
   ],
   resolve: {
-    extensions: [".tsx", ".ts", ".js"],
+    extensions: [".ts", ".js"],
   },
 }

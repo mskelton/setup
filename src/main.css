@@ -1,0 +1,22 @@
+html,
+body {
+  margin: 0;
+}
+
+.wrapper {
+  width: 80vw;
+  height: 80vh;
+  position: relative;
+}
+
+video {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+canvas {
+  top: 0;
+  left: 0;
+  position: absolute;
+}

@@ -1,11 +1,6 @@
 {
-  "extends": [
-    "@mskelton",
-    "@mskelton/eslint-config/typescript",
-    "@mskelton/eslint-config/react"
-  ],
+  "extends": ["@mskelton", "@mskelton/eslint-config/typescript"],
   "rules": {
-    "@typescript-eslint/no-explicit-any": "off",
-    "react/react-in-jsx-scope": "off"
+    "@typescript-eslint/no-explicit-any": "off"
   }
 }
