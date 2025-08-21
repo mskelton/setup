@@ -1,6 +1,0 @@
-{
-  "extends": ["@mskelton", "@mskelton/eslint-config/typescript"],
-  "rules": {
-    "@typescript-eslint/no-explicit-any": "off"
-  }
-}
