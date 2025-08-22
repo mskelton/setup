@@ -1,16 +1,5 @@
 {
-  "extends": "@mskelton/tsconfig",
-  "compilerOptions": {
-    "emitDeclarationOnly": false,
-    "jsx": "react-jsx",
-    "jsxImportSource": "@emotion/react",
-    "module": "esnext",
-    "noEmit": true
-  },
-  "ts-node": {
-    "transpileOnly": true,
-    "compilerOptions": {
-      "module": "CommonJS"
-    }
-  }
+  "extends": "@react-native/typescript-config",
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["**/node_modules", "**/Pods"]
 }
