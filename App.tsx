@@ -7,12 +7,7 @@ import {
   Platform,
   Dimensions,
 } from 'react-native';
-import {
-  Camera,
-  useCameraDevices,
-  useFrameProcessor,
-} from 'react-native-vision-camera';
-import { runOnJS } from 'react-native-reanimated';
+import { RNCamera } from 'react-native-camera';
 import { CardDetector, DetectedCard } from './src/CardDetector';
 import { SetSolver } from './src/SetSolver';
 import { CardOverlay } from './src/CardOverlay';
